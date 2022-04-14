@@ -7,6 +7,8 @@ from application.models import Person, Car
 
 # create our database schema
 # db.create_all()
+# create_all() creates all tables.
+# drop_all() drops all tables.
 
 db.drop_all()
 db.create_all()
