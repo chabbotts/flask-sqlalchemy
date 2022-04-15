@@ -44,63 +44,85 @@ def show_cars():
     return render_template('cars.html', cars=cars, message=error, title="Car")
 
 
-@app.route('/people/<int:person_id>', methods=['GET'])
-def show_person(person_id):
-    error = ""
-    # use filter_by for any column
-    # person = Person.query.filter_by(id=person_id).first()
-    #  use get for the PK
-    person = Person.query.get(person_id)
+# @app.route('/people/<int:person_id>', methods=['GET'])
+# def show_person(person_id):
+#     error = ""
+#     # use filter_by for any column
+#     # person = Person.query.filter_by(id=person_id).first()
+#     #  use get for the PK
+#     person = Person.query.get(person_id)
+#
+#     # simpsons = Person.query.filter_by(last_name="simpson").all()
+#
+#     # to sort
+#     # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name).all()
+#     # descending sort
+#     # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name.desc()).all()
+#     # limit to top 2 simpsons
+#     abbotts = Person.query.filter_by(last_name="Abbotts").order_by(Person.first_name).limit(2).all()
+#     if not person:
+#         error = "There is no person with ID: " + str(person_id)
+#         print(person)
+#     return render_template('person.html', person=person, message=error, title="Person", family=abbotts)
+#
+#
+# @app.route('/people/<last_name>', methods=['GET'])
+# def show_person_last_name(last_name):
+#     error = ""
+#     # use filter_by for any column
+#     # person = Person.query.filter_by(id=person_id).first()
+#     #  use get for the PK
+#     person = Person.query.get(last_name)
+#
+#     # simpsons = Person.query.filter_by(last_name="simpson").all()
+#
+#     # to sort
+#     # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name).all()
+#     # descending sort
+#     # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name.desc()).all()
+#     # limit to top 2 simpsons
+#     abbotts = Person.query.filter_by(last_name="Abbotts").order_by(Person.first_name).limit(2).all()
+#     if not person:
+#         error = "There is no person with surname: " + str(last_name)
+#         print(person)
+#     return render_template('person.html', person=person, message=error, title="Person", family=abbotts)
+#
 
-    # simpsons = Person.query.filter_by(last_name="simpson").all()
-
-    # to sort
-    # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name).all()
-    # descending sort
-    # simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name.desc()).all()
-    # limit to top 2 simpsons
-    simpsons = Person.query.filter_by(last_name="simpson").order_by(Person.first_name).limit(2).all()
-    if not person:
-        error = "There is no person with ID: " + str(person_id)
-        print(person)
-    return render_template('person.html', person=person, message=error, title="Person", family=simpsons)
+# @app.route('/people/<int:person_id>', methods=['GET', 'PUT'])
+# def update_person(person_id):
+#     error = ""
+#     person = Person.query.get(person_id)
+#     person.last_name = "Abbotts"
+#     db.session.commit()
+#     if not person:
+#         error = "There is no person with ID: " + str(person_id)
+#         print(person)
+#     return render_template('person.html', person=person, message=error, title="Person", family=[])
 
 
-@app.route('/people/<int:person_id>', methods=['PUT'])
-def update_person(person_id):
-    error = ""
-    person = Person.query.get(person_id)
-    person.last_name = "Flanders"
-    db.session.commit()
-    if not person:
-        error = "There is no person with ID: " + str(person_id)
-        print(person)
-    return render_template('person.html', person=person, message=error, title="Person", family=[])
+# @app.route('/people/<int:person_id>/<string:new_last_name>', methods=['PUT'])
+# def update_person_with_name(person_id, new_last_name):
+#     error = ""
+#     person = Person.query.get(person_id)
+#     person.last_name = new_last_name
+#     db.session.commit()
+#     if not person:
+#         error = "There is no person with ID: " + str(person_id)
+#         print(person)
+#     return render_template('person.html', person=person, message=error, title="Updated Person", family=[])
 
 
-@app.route('/people/<int:person_id>/<string:new_last_name>', methods=['PUT'])
-def update_person_with_name(person_id, new_last_name):
-    error = ""
-    person = Person.query.get(person_id)
-    person.last_name = new_last_name
-    db.session.commit()
-    if not person:
-        error = "There is no person with ID: " + str(person_id)
-        print(person)
-    return render_template('person.html', person=person, message=error, title="Updated Person", family=[])
-
-
-@app.route('/people/<int:person_id>', methods=['DELETE'])
-def delete_person(person_id):
-    error = ""
-    person = Person.query.get(person_id)
-    db.session.delete(person)
-    db.session.commit()
-    people = Person.query.all()
-    if not person:
-        error = "There is no person with ID: " + str(person_id)
-        # print(person)
-    return render_template('people.html', people=people, message=error, title="People")
+# @app.route('/people/<int:person_id>', methods=['DELETE'])
+# def delete_person(person_id):
+#     error = ""
+#     person = Person.query.get(person_id)
+#     db.session.delete(person)
+#     db.session.commit()
+#     people = Person.query.all()
+#     if not person:
+#         error = "There is no person with ID: " + str(person_id)
+#         # print(person)
+#     return render_template('people.html', people=people, message=error, title="People")
 
 
 @app.route('/personandcars/<int:person_id>', methods=['GET'])

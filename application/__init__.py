@@ -1,5 +1,6 @@
 # import Flask class from the flask module
 from flask import Flask
+#import SQLAlchemy class from the flask_sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
 from os import getenv
 
